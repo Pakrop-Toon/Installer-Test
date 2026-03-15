@@ -8,6 +8,32 @@
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.props": {},
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.targets": {}
         }
+      },
+      "WinFormsApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "WinFormsApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "UAP,Version=v10.0.17763/win10-arm": {
@@ -17,6 +43,32 @@
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.props": {},
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.targets": {}
         }
+      },
+      "WinFormsApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "WinFormsApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "UAP,Version=v10.0.17763/win10-arm-aot": {
@@ -26,6 +78,32 @@
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.props": {},
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.targets": {}
         }
+      },
+      "WinFormsApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "WinFormsApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "UAP,Version=v10.0.17763/win10-arm64-aot": {
@@ -35,6 +113,32 @@
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.props": {},
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.targets": {}
         }
+      },
+      "WinFormsApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "WinFormsApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "UAP,Version=v10.0.17763/win10-x64": {
@@ -44,6 +148,32 @@
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.props": {},
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.targets": {}
         }
+      },
+      "WinFormsApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "WinFormsApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "UAP,Version=v10.0.17763/win10-x64-aot": {
@@ -53,6 +183,32 @@
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.props": {},
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.targets": {}
         }
+      },
+      "WinFormsApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "WinFormsApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "UAP,Version=v10.0.17763/win10-x86": {
@@ -62,6 +218,32 @@
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.props": {},
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.targets": {}
         }
+      },
+      "WinFormsApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "WinFormsApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "UAP,Version=v10.0.17763/win10-x86-aot": {
@@ -71,6 +253,32 @@
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.props": {},
           "buildTransitive/Microsoft.Windows.SDK.BuildTools.targets": {}
         }
+      },
+      "WinFormsApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "WinFormsApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     }
   },
@@ -271,11 +479,23 @@
         "schemas/10.0.26100.0/winrt/UapManifestSchema_v7.xsd",
         "schemas/10.0.26100.0/winrt/UapManifestSchema_v8.xsd"
       ]
+    },
+    "WinFormsApp1/1.0.0": {
+      "type": "project",
+      "path": "../WinFormTest1/WinFormsApp1/WinFormsApp1.csproj",
+      "msbuildProject": "../WinFormTest1/WinFormsApp1/WinFormsApp1.csproj"
+    },
+    "WinFormsApp2/1.0.0": {
+      "type": "project",
+      "path": "../WinFormTest2/WinFormsApp2/WinFormsApp2.csproj",
+      "msbuildProject": "../WinFormTest2/WinFormsApp2/WinFormsApp2.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.17763": [
-      "Microsoft.Windows.SDK.BuildTools >= 10.0.26100.1742"
+      "Microsoft.Windows.SDK.BuildTools >= 10.0.26100.1742",
+      "WinFormsApp1 >= 1.0.0",
+      "WinFormsApp2 >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -311,7 +531,14 @@
       "frameworks": {
         "uap10.0.17763": {
           "targetAlias": "net451",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Playground\\Installer-Test\\WinFormTest1\\WinFormsApp1\\WinFormsApp1.csproj": {
+              "projectPath": "D:\\Playground\\Installer-Test\\WinFormTest1\\WinFormsApp1\\WinFormsApp1.csproj"
+            },
+            "D:\\Playground\\Installer-Test\\WinFormTest2\\WinFormsApp2\\WinFormsApp2.csproj": {
+              "projectPath": "D:\\Playground\\Installer-Test\\WinFormTest2\\WinFormsApp2\\WinFormsApp2.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
