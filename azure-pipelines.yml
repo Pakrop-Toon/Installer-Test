@@ -1,0 +1,83 @@
+# Azure Pipelines CI/CD configuration for WinForms .NET 9 projects
+
+trigger:
+  branches:
+    include:
+    - main
+    - develop
+  paths:
+    include:
+    - WinFormTest1/**
+    - WinFormTest2/**
+    - azure-pipelines.yml
+    exclude:
+    - README.md
+    - docs/*
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  buildPlatform: 'Any CPU'
+
+stages:
+- stage: Build
+  displayName: 'Build and Test'
+  jobs:
+  - job: Build
+    displayName: 'Build WinForms Applications'
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Install .NET 9 SDK'
+      inputs:
+        packageType: 'sdk'
+        version: '9.x'
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore NuGet packages'
+      inputs:
+        command: 'restore'
+        projects: '**/*.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build WinFormsApp1'
+      inputs:
+        command: 'build'
+        projects: 'WinFormTest1/WinFormsApp1/WinFormsApp1.csproj'
+        arguments: '--configuration $(buildConfiguration) --no-restore'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build WinFormsApp2'
+      inputs:
+        command: 'build'
+        projects: 'WinFormTest2/WinFormsApp2/WinFormsApp2.csproj'
+        arguments: '--configuration $(buildConfiguration) --no-restore'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish WinFormsApp1'
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: 'WinFormTest1/WinFormsApp1/WinFormsApp1.csproj'
+        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/WinFormsApp1 --no-restore --no-build'
+        zipAfterPublish: true
+        modifyOutputPath: false
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish WinFormsApp2'
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: 'WinFormTest2/WinFormsApp2/WinFormsApp2.csproj'
+        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/WinFormsApp2 --no-restore --no-build'
+        zipAfterPublish: true
+        modifyOutputPath: false
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Build Artifacts'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
