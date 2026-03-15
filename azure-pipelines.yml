@@ -1,4 +1,4 @@
-# Azure Pipelines CI/CD configuration for WinForms .NET 9 projects
+# Azure Pipelines CI/CD configuration for WinForms .NET 9 projects with MSIX Installer
 
 trigger:
   branches:
@@ -9,6 +9,7 @@ trigger:
     include:
     - WinFormTest1/**
     - WinFormTest2/**
+    - Installer-Test/**
     - azure-pipelines.yml
     exclude:
     - README.md
@@ -19,14 +20,15 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  buildPlatform: 'Any CPU'
+  buildPlatform: 'x64'
+  solution: 'Installer-Test.sln'
 
 stages:
 - stage: Build
-  displayName: 'Build and Test'
+  displayName: 'Build and Package'
   jobs:
   - job: Build
-    displayName: 'Build WinForms Applications'
+    displayName: 'Build WinForms Applications and Installer'
     steps:
     - task: UseDotNet@2
       displayName: 'Install .NET 9 SDK'
@@ -35,49 +37,26 @@ stages:
         version: '9.x'
         installationPath: $(Agent.ToolsDirectory)/dotnet
 
-    - task: DotNetCoreCLI@2
-      displayName: 'Restore NuGet packages'
+    - task: NuGetToolInstaller@1
+      displayName: 'Install NuGet'
+
+    - task: NuGetCommand@2
+      displayName: 'Restore NuGet packages for solution'
       inputs:
         command: 'restore'
-        projects: '**/*.csproj'
+        restoreSolution: '$(solution)'
 
-    - task: DotNetCoreCLI@2
-      displayName: 'Build WinFormsApp1'
+    - task: VSBuild@1
+      displayName: 'Build Solution with Installer'
       inputs:
-        command: 'build'
-        projects: 'WinFormTest1/WinFormsApp1/WinFormsApp1.csproj'
-        arguments: '--configuration $(buildConfiguration) --no-restore'
-
-    - task: DotNetCoreCLI@2
-      displayName: 'Build WinFormsApp2'
-      inputs:
-        command: 'build'
-        projects: 'WinFormTest2/WinFormsApp2/WinFormsApp2.csproj'
-        arguments: '--configuration $(buildConfiguration) --no-restore'
-
-    - task: DotNetCoreCLI@2
-      displayName: 'Publish WinFormsApp1'
-      inputs:
-        command: 'publish'
-        publishWebProjects: false
-        projects: 'WinFormTest1/WinFormsApp1/WinFormsApp1.csproj'
-        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/WinFormsApp1 --no-restore --no-build'
-        zipAfterPublish: true
-        modifyOutputPath: false
-
-    - task: DotNetCoreCLI@2
-      displayName: 'Publish WinFormsApp2'
-      inputs:
-        command: 'publish'
-        publishWebProjects: false
-        projects: 'WinFormTest2/WinFormsApp2/WinFormsApp2.csproj'
-        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/WinFormsApp2 --no-restore --no-build'
-        zipAfterPublish: true
-        modifyOutputPath: false
+        solution: '$(solution)'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
+        msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)/AppxPackages/" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
 
     - task: PublishBuildArtifacts@1
-      displayName: 'Publish Build Artifacts'
+      displayName: 'Publish Installer Artifacts'
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/AppxPackages'
+        ArtifactName: 'MSIX-Installer'
         publishLocation: 'Container'
