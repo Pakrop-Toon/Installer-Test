@@ -23,7 +23,7 @@ resources:
   - repository: WinFormTest1
     type: github
     name: Pakrop-Toon/WinFormTest1
-    # endpoint: YOUR_GITHUB_SERVICE_CONNECTION
+    endpoint: GitHubConnection
     trigger:
       branches:
         include:
@@ -32,7 +32,7 @@ resources:
   - repository: WinFormTest2
     type: github
     name: Pakrop-Toon/WinFormTest2
-    # endpoint: YOUR_GITHUB_SERVICE_CONNECTION
+    endpoint: GitHubConnection
     trigger:
       branches:
         include:
