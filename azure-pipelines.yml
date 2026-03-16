@@ -44,8 +44,22 @@ stages:
     - task: NuGetToolInstaller@1
       displayName: 'Install NuGet'
 
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore WinFormsApp1 with runtime'
+      inputs:
+        command: 'restore'
+        projects: 'WinFormTest1/WinFormsApp1/WinFormsApp1.csproj'
+        arguments: '--runtime win-x64'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore WinFormsApp2 with runtime'
+      inputs:
+        command: 'restore'
+        projects: 'WinFormTest2/WinFormsApp2/WinFormsApp2.csproj'
+        arguments: '--runtime win-x64'
+
     - task: NuGetCommand@2
-      displayName: 'Restore NuGet packages for solution'
+      displayName: 'Restore NuGet packages for WAP project'
       inputs:
         command: 'restore'
         restoreSolution: '$(solution)'
