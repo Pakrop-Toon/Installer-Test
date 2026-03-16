@@ -70,7 +70,12 @@ stages:
         solution: '$(solution)'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-        msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)/AppxPackages/" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+        msbuildArgs: >
+          /p:RuntimeIdentifier=win-x64
+          /p:AppxBundlePlatforms="$(buildPlatform)"
+          /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)/AppxPackages/"
+          /p:AppxBundle=Always
+          /p:UapAppxPackageBuildMode=StoreUpload
 
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Installer Artifacts'
