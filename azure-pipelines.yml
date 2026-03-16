@@ -28,24 +28,27 @@ stages:
   displayName: 'Build and Package'
   jobs:
   - job: Build
-    displayName: 'Build WinForms Applications and Installer'
+    displayName: 'Build WinForms Apps and MSIX Installer'
 
     steps:
+
+    # Checkout repository + submodules
     - checkout: self
-      displayName: 'Checkout main repository'
+      displayName: 'Checkout repository'
       submodules: true
 
+    # Install .NET SDK
     - task: UseDotNet@2
       displayName: 'Install .NET 9 SDK'
       inputs:
         packageType: 'sdk'
         version: '9.x'
 
-    # Clean (prevents cached assets issues)
+    # Clean solution
     - script: dotnet clean $(solution)
       displayName: 'Clean solution'
 
-    # Clear NuGet cache (helps with runtime pack errors)
+    # Clear NuGet cache (prevents runtime pack issues)
     - script: dotnet nuget locals all --clear
       displayName: 'Clear NuGet cache'
 
@@ -57,9 +60,9 @@ stages:
         projects: '$(solution)'
         arguments: '--runtime win-x64'
 
-    # Build and package MSIX
+    # Build MSIX installer
     - task: VSBuild@1
-      displayName: 'Build Solution with Installer'
+      displayName: 'Build solution and create MSIX'
       inputs:
         solution: '$(solution)'
         platform: '$(buildPlatform)'
@@ -71,9 +74,9 @@ stages:
           /p:AppxBundle=Always
           /p:UapAppxPackageBuildMode=StoreUpload
 
-    # Publish MSIX artifacts
+    # Publish artifacts
     - task: PublishBuildArtifacts@1
-      displayName: 'Publish Installer Artifacts'
+      displayName: 'Publish MSIX Installer'
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)\AppxPackages'
         ArtifactName: 'MSIX-Installer'
