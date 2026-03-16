@@ -47,7 +47,7 @@ stages:
         configuration: $(buildConfiguration)
         msbuildArgs: >
           /p:RuntimeIdentifier=win-x64
-          /p:AppxBundlePlatforms="$(buildPlatform)"
+          /p:AppxBundlePlatforms="x64"
           /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\"
           /p:AppxBundle=Always
           /p:UapAppxPackageBuildMode=StoreUpload
