@@ -19,41 +19,39 @@ stages:
   displayName: Build and Package
   jobs:
   - job: Build
-    displayName: Build WinForms Apps and MSIX Installer
 
     steps:
 
-    # Checkout repo + submodules
     - checkout: self
       submodules: true
-      persistCredentials: true
 
-    # Install .NET 9 SDK
     - task: UseDotNet@2
       displayName: Install .NET 9 SDK
       inputs:
         packageType: sdk
         version: 9.x
 
-    # Clean old build outputs (prevents x86/x64 mismatch)
+    # Clean old artifacts
     - script: |
-        rmdir /s /q WinFormTest1\WinFormsApp1\bin || echo "bin already removed"
-        rmdir /s /q WinFormTest1\WinFormsApp1\obj || echo "obj already removed"
-        rmdir /s /q WinFormTest2\WinFormsApp2\bin || echo "bin already removed"
-        rmdir /s /q WinFormTest2\WinFormsApp2\obj || echo "obj already removed"
-      displayName: Clean old build artifacts
+        rmdir /s /q WinFormTest1\WinFormsApp1\bin || echo skip
+        rmdir /s /q WinFormTest1\WinFormsApp1\obj || echo skip
+        rmdir /s /q WinFormTest2\WinFormsApp2\bin || echo skip
+        rmdir /s /q WinFormTest2\WinFormsApp2\obj || echo skip
+      displayName: Clean old builds
 
-    # Restore NuGet packages
+    # Restore WITH runtime identifier
     - task: DotNetCoreCLI@2
-      displayName: Restore solution with win-x64 runtime
+      displayName: Restore solution
       inputs:
         command: restore
         projects: $(solution)
-        arguments: --runtime win-x64
+        arguments: >
+          /p:RuntimeIdentifier=win-x64
+          /p:Platform=x64
 
-    # Build solution (required for .wapproj packaging)
+    # Build using Visual Studio (needed for .wapproj)
     - task: VSBuild@1
-      displayName: Build MSIX Installer
+      displayName: Build MSIX installer
       inputs:
         solution: $(solution)
         platform: $(buildPlatform)
@@ -61,15 +59,13 @@ stages:
         msbuildArgs: >
           /p:RuntimeIdentifier=win-x64
           /p:Platform=x64
-          /p:AppxBundlePlatforms="x64"
+          /p:AppxBundlePlatforms=x64
           /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\"
           /p:AppxBundle=Always
           /p:UapAppxPackageBuildMode=StoreUpload
 
-    # Publish MSIX artifacts
     - task: PublishBuildArtifacts@1
-      displayName: Publish MSIX Installer
+      displayName: Publish MSIX
       inputs:
         PathtoPublish: $(Build.ArtifactStagingDirectory)\AppxPackages
         ArtifactName: MSIX-Installer
-        publishLocation: Container
