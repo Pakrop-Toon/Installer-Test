@@ -16,43 +16,60 @@ variables:
 
 stages:
 - stage: Build
+  displayName: Build and Package
   jobs:
   - job: Build
+    displayName: Build WinForms Apps and MSIX Installer
 
     steps:
 
+    # Checkout repo + submodules
     - checkout: self
       submodules: true
+      persistCredentials: true
 
+    # Install .NET 9 SDK
     - task: UseDotNet@2
-      displayName: Install .NET 9
+      displayName: Install .NET 9 SDK
       inputs:
         packageType: sdk
         version: 9.x
 
-    # Restore using dotnet (with runtime)
+    # Clean old build outputs (prevents x86/x64 mismatch)
+    - script: |
+        rmdir /s /q WinFormTest1\WinFormsApp1\bin || echo "bin already removed"
+        rmdir /s /q WinFormTest1\WinFormsApp1\obj || echo "obj already removed"
+        rmdir /s /q WinFormTest2\WinFormsApp2\bin || echo "bin already removed"
+        rmdir /s /q WinFormTest2\WinFormsApp2\obj || echo "obj already removed"
+      displayName: Clean old build artifacts
+
+    # Restore NuGet packages
     - task: DotNetCoreCLI@2
-      displayName: Restore solution
+      displayName: Restore solution with win-x64 runtime
       inputs:
         command: restore
         projects: $(solution)
         arguments: --runtime win-x64
 
-    # Build using Visual Studio (required for wapproj)
+    # Build solution (required for .wapproj packaging)
     - task: VSBuild@1
-      displayName: Build MSIX installer
+      displayName: Build MSIX Installer
       inputs:
         solution: $(solution)
         platform: $(buildPlatform)
         configuration: $(buildConfiguration)
         msbuildArgs: >
           /p:RuntimeIdentifier=win-x64
+          /p:Platform=x64
           /p:AppxBundlePlatforms="x64"
           /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\"
           /p:AppxBundle=Always
           /p:UapAppxPackageBuildMode=StoreUpload
 
+    # Publish MSIX artifacts
     - task: PublishBuildArtifacts@1
+      displayName: Publish MSIX Installer
       inputs:
         PathtoPublish: $(Build.ArtifactStagingDirectory)\AppxPackages
         ArtifactName: MSIX-Installer
+        publishLocation: Container
