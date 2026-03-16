@@ -1,1 +1,2 @@
 D:\Playground\Installer-Test\Installer-Test\obj\Debug\Installer-Test.wapproj.CoreCompileInputs.cache
+D:\Playground\Installer-Test\Installer-Test\obj\Debug\Installer-Test.wapproj.AssemblyReference.cache
