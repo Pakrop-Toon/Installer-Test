@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>PAKROP</Machine>
+    <WindowsUser>PakropThummalee</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>51525976-8fc5-45f4-8832-af8f4b27cfb1</PackageIdentityName>
+    <PackageIdentityPublisher>CN=PakropThummalee</PackageIdentityPublisher>
+    <IntermediateOutputPath>D:\Playground\Installer-Test\Installer-Test\obj\Debug\</IntermediateOutputPath>
+    <RemoteDeploymentType>
+    </RemoteDeploymentType>
+    <PackageRegistrationPath>
+    </PackageRegistrationPath>
+    <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+    <WindowsSdkPath>
+    </WindowsSdkPath>
+    <LayoutDir>D:\Playground\Installer-Test\Installer-Test\bin\AnyCPU\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>EBB6465948A77FC49214CFE83DA0B1AD0BD77E8E388F45808A6FF320820BD04A</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>51525976-8fc5-45f4-8832-af8f4b27cfb1_1.0.0.0_neutral__jsb76kfd438v4</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>51525976-8fc5-45f4-8832-af8f4b27cfb1_jsb76kfd438v4!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>51525976-8fc5-45f4-8832-af8f4b27cfb1</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=PakropThummalee</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="D:\Playground\Installer-Test\Installer-Test\bin\AnyCPU\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2026-03-16T08:04:39.341</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\Installer-Test\Images\SplashScreen.scale-200.png">
+      <PackagePath>Images\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2026-03-16T06:42:11.597</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\Installer-Test\Images\LockScreenLogo.scale-200.png">
+      <PackagePath>Images\LockScreenLogo.scale-200.png</PackagePath>
+      <Modified>2026-03-16T06:42:11.597</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\Installer-Test\Images\Square150x150Logo.scale-200.png">
+      <PackagePath>Images\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2026-03-16T06:42:11.598</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\Installer-Test\Images\Square44x44Logo.scale-200.png">
+      <PackagePath>Images\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2026-03-16T06:42:11.598</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\Installer-Test\Images\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2026-03-16T06:42:11.599</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\Installer-Test\Images\StoreLogo.png">
+      <PackagePath>Images\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2026-03-16T06:42:11.599</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\Installer-Test\Images\Wide310x150Logo.scale-200.png">
+      <PackagePath>Images\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2026-03-16T06:42:11.600</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\Installer-Test\bin\AnyCPU\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2026-03-16T08:04:39.248</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\WinFormTest1\WinFormsApp1\bin\Debug\net9.0-windows\WinFormsApp1.deps.json">
+      <PackagePath>WinFormsApp1\WinFormsApp1.deps.json</PackagePath>
+      <Modified>2026-03-16T08:04:28.680</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\WinFormTest1\WinFormsApp1\obj\Debug\net9.0-windows\apphost.exe">
+      <PackagePath>WinFormsApp1\WinFormsApp1.exe</PackagePath>
+      <Modified>2026-03-16T08:04:28.540</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\WinFormTest1\WinFormsApp1\bin\Debug\net9.0-windows\WinFormsApp1.runtimeconfig.json">
+      <PackagePath>WinFormsApp1\WinFormsApp1.runtimeconfig.json</PackagePath>
+      <Modified>2026-03-16T08:04:28.696</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\WinFormTest1\WinFormsApp1\bin\Debug\net9.0-windows\WinFormsApp1.dll">
+      <PackagePath>WinFormsApp1\WinFormsApp1.dll</PackagePath>
+      <Modified>2026-03-16T08:04:28.519</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\WinFormTest2\WinFormsApp2\bin\Debug\net9.0-windows\WinFormsApp2.deps.json">
+      <PackagePath>WinFormsApp2\WinFormsApp2.deps.json</PackagePath>
+      <Modified>2026-03-16T08:04:37.981</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\WinFormTest2\WinFormsApp2\obj\Debug\net9.0-windows\apphost.exe">
+      <PackagePath>WinFormsApp2\WinFormsApp2.exe</PackagePath>
+      <Modified>2026-03-16T08:04:37.959</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\WinFormTest2\WinFormsApp2\bin\Debug\net9.0-windows\WinFormsApp2.runtimeconfig.json">
+      <PackagePath>WinFormsApp2\WinFormsApp2.runtimeconfig.json</PackagePath>
+      <Modified>2026-03-16T08:04:37.985</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Playground\Installer-Test\WinFormTest2\WinFormsApp2\bin\Debug\net9.0-windows\WinFormsApp2.dll">
+      <PackagePath>WinFormsApp2\WinFormsApp2.dll</PackagePath>
+      <Modified>2026-03-16T08:04:37.943</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
