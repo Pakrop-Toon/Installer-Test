@@ -1,69 +1,50 @@
-# Azure Pipelines CI/CD configuration for WinForms .NET 9 projects with MSIX Installer
+# Azure Pipelines CI/CD for WinForms .NET 9 + MSIX Installer
 
 trigger:
   branches:
     include:
       - main
       - develop
-  paths:
-    include:
-      - WinFormTest1/**
-      - WinFormTest2/**
-      - Installer-Test/**
-      - azure-pipelines.yml
-    exclude:
-      - README.md
-      - docs/*
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: windows-latest
 
 variables:
-  buildConfiguration: 'Release'
-  buildPlatform: 'x64'
-  solution: 'Installer-Test.sln'
+  buildConfiguration: Release
+  buildPlatform: x64
+  solution: Installer-Test.sln
 
 stages:
 - stage: Build
-  displayName: 'Build and Package'
   jobs:
   - job: Build
-    displayName: 'Build WinForms Applications and Installer'
 
     steps:
+
     - checkout: self
-      displayName: 'Checkout main repository'
       submodules: true
 
     - task: UseDotNet@2
-      displayName: 'Install .NET 9 SDK'
+      displayName: Install .NET 9
       inputs:
-        packageType: 'sdk'
-        version: '9.x'
+        packageType: sdk
+        version: 9.x
 
-    # Clean (prevents cached assets issues)
-    - script: dotnet clean $(solution)
-      displayName: 'Clean solution'
-
-    # Clear NuGet cache (helps with runtime pack errors)
-    - script: dotnet nuget locals all --clear
-      displayName: 'Clear NuGet cache'
-
-    # Restore solution with runtime
+    # Restore using dotnet (with runtime)
     - task: DotNetCoreCLI@2
-      displayName: 'Restore solution with win-x64 runtime'
+      displayName: Restore solution
       inputs:
-        command: 'restore'
-        projects: '$(solution)'
-        arguments: '--runtime win-x64'
+        command: restore
+        projects: $(solution)
+        arguments: --runtime win-x64
 
-    # Build and package MSIX
+    # Build using Visual Studio (required for wapproj)
     - task: VSBuild@1
-      displayName: 'Build Solution with Installer'
+      displayName: Build MSIX installer
       inputs:
-        solution: '$(solution)'
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
+        solution: $(solution)
+        platform: $(buildPlatform)
+        configuration: $(buildConfiguration)
         msbuildArgs: >
           /p:RuntimeIdentifier=win-x64
           /p:AppxBundlePlatforms="$(buildPlatform)"
@@ -71,10 +52,7 @@ stages:
           /p:AppxBundle=Always
           /p:UapAppxPackageBuildMode=StoreUpload
 
-    # Publish MSIX artifacts
     - task: PublishBuildArtifacts@1
-      displayName: 'Publish Installer Artifacts'
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)\AppxPackages'
-        ArtifactName: 'MSIX-Installer'
-        publishLocation: 'Container'
+        PathtoPublish: $(Build.ArtifactStagingDirectory)\AppxPackages
+        ArtifactName: MSIX-Installer
