@@ -3,17 +3,17 @@
 trigger:
   branches:
     include:
-    - main
-    - develop
+      - main
+      - develop
   paths:
     include:
-    - WinFormTest1/**
-    - WinFormTest2/**
-    - Installer-Test/**
-    - azure-pipelines.yml
+      - WinFormTest1/**
+      - WinFormTest2/**
+      - Installer-Test/**
+      - azure-pipelines.yml
     exclude:
-    - README.md
-    - docs/*
+      - README.md
+      - docs/*
 
 pool:
   vmImage: 'windows-latest'
@@ -29,6 +29,7 @@ stages:
   jobs:
   - job: Build
     displayName: 'Build WinForms Applications and Installer'
+
     steps:
     - checkout: self
       displayName: 'Checkout main repository'
@@ -39,31 +40,24 @@ stages:
       inputs:
         packageType: 'sdk'
         version: '9.x'
-        installationPath: $(Agent.ToolsDirectory)/dotnet
 
-    - task: NuGetToolInstaller@1
-      displayName: 'Install NuGet'
+    # Clean (prevents cached assets issues)
+    - script: dotnet clean $(solution)
+      displayName: 'Clean solution'
 
+    # Clear NuGet cache (helps with runtime pack errors)
+    - script: dotnet nuget locals all --clear
+      displayName: 'Clear NuGet cache'
+
+    # Restore solution with runtime
     - task: DotNetCoreCLI@2
-      displayName: 'Restore WinFormsApp1 with runtime'
+      displayName: 'Restore solution with win-x64 runtime'
       inputs:
         command: 'restore'
-        projects: 'WinFormTest1/WinFormsApp1/WinFormsApp1.csproj'
+        projects: '$(solution)'
         arguments: '--runtime win-x64'
 
-    - task: DotNetCoreCLI@2
-      displayName: 'Restore WinFormsApp2 with runtime'
-      inputs:
-        command: 'restore'
-        projects: 'WinFormTest2/WinFormsApp2/WinFormsApp2.csproj'
-        arguments: '--runtime win-x64'
-
-    - task: NuGetCommand@2
-      displayName: 'Restore NuGet packages for WAP project'
-      inputs:
-        command: 'restore'
-        restoreSolution: '$(solution)'
-
+    # Build and package MSIX
     - task: VSBuild@1
       displayName: 'Build Solution with Installer'
       inputs:
@@ -73,13 +67,14 @@ stages:
         msbuildArgs: >
           /p:RuntimeIdentifier=win-x64
           /p:AppxBundlePlatforms="$(buildPlatform)"
-          /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)/AppxPackages/"
+          /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\"
           /p:AppxBundle=Always
           /p:UapAppxPackageBuildMode=StoreUpload
 
+    # Publish MSIX artifacts
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Installer Artifacts'
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/AppxPackages'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)\AppxPackages'
         ArtifactName: 'MSIX-Installer'
         publishLocation: 'Container'
