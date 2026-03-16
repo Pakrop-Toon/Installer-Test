@@ -15,30 +15,6 @@ trigger:
     - README.md
     - docs/*
 
-# Trigger builds when submodule repositories are updated
-# Note: Replace 'YOUR_GITHUB_SERVICE_CONNECTION' with your GitHub service connection name
-# Or remove the 'endpoint' line if using Azure Repos or default authentication
-resources:
-  repositories:
-  - repository: WinFormTest1
-    type: github
-    name: Pakrop-Toon/WinFormTest1
-    endpoint: GitHubConnection
-    trigger:
-      branches:
-        include:
-        - main
-        - develop
-  - repository: WinFormTest2
-    type: github
-    name: Pakrop-Toon/WinFormTest2
-    endpoint: GitHubConnection
-    trigger:
-      branches:
-        include:
-        - main
-        - develop
-
 pool:
   vmImage: 'windows-latest'
 
